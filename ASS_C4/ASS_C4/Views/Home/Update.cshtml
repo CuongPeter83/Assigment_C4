@@ -1,0 +1,151 @@
+﻿@model Assignment.Models.Data.Product
+
+@{
+	ViewData["Title"] = "Update";
+}
+
+<h1>Update Product</h1>
+
+<br />
+<div class="row">
+
+	<form asp-action="Update">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		@* <div class="form-group">
+		<label asp-for="ID" class="control-label"></label>
+		<input asp-for="ID" class="form-control" />
+		<span asp-validation-for="ID" class="text-danger"></span>
+		</div>*@
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="NameProduct" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="NameProduct" class="form-control" />
+				<span asp-validation-for="NameProduct" class="text-danger"></span>
+
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Category" class="control-label"></label>
+
+			</div>
+			<div class="col-9">
+				@Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Capacity" class="control-label col-3"></label>
+				
+			</div>
+			<div class="col-9">
+				@Html.DropDownList("CapacityID", null, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.CapacityID, "", new { @class = "text-danger" })
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Supplier" class="control-label"></label>
+				
+			</div>
+			<div class="col-9">
+				@Html.DropDownList("SupplierID", null, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+			</div>
+		</div>
+		<br />
+
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Image" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				@Html.TextBoxFor(model => model.Image, null, new { type = "file", @class = "form-control" })
+				<br />
+				<img src="/images/@Model.Image?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" width="200px" height="200px">
+				@Html.Hidden("oldimage", @Model.Image)
+				@Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+				<br />
+				<span asp-validation-for="Image" class="text-danger"></span>
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Price" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Price" class="form-control" />
+				<span asp-validation-for="Price " class="text-danger"></span>
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="AvailableQuantity" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="AvailableQuantity" class="form-control" />
+				<span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Color" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Color" class="form-control" />
+				<span asp-validation-for="Color" class="text-danger"></span>
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Description" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<textarea asp-for="Description" class="form-control" rows="5"></textarea>
+			</div>
+		</div>
+		<br />
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Features" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<textarea asp-for="Features" class="form-control" rows="5"></textarea>
+				<span asp-validation-for="Features" class="text-danger"></span>
+			</div>
+		</div>
+		<br />
+		@*<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Status" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Status" class="form-control" />
+				<span asp-validation-for="Status" class="text-danger"></span>
+			</div>
+		</div>*@
+		<br />
+		<div class="form-group">
+			<input type="submit" value="Save" class="btn btn-primary" />
+		</div>
+	</form>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

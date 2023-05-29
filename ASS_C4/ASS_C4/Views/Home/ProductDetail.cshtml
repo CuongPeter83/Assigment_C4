@@ -1,0 +1,56 @@
+﻿@model Assignment.Models.Data.Product
+ 
+@{
+    ViewData["Title"] = "ProductDetail";
+    var bg = ViewBag.CapacityID;
+
+}
+<style>
+    .anh {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<div style="height: 1000px; margin: 30px;" class="container">
+    <br />
+    <div class="row">
+        <div class="col-4" style="margin: auto;">
+            <img class="anh" src="/images/@Model.Image?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" >
+            <div class="card">
+                <div class="card-header">
+                    <div class="caption text-center">
+                        Đặc điểm sản phẩm
+                    </div>
+                </div>
+                <div class="card-body">
+                    @Model.Features
+                </div>
+            </div>
+        </div>
+        <div class="col-4" style="margin-top: 30px; line-height:15px;">
+            <h3>@Model.NameProduct</h3> <br />
+            <h5><label>Màu sắc: @Model.Color</label></h5>
+            <h5 style="color:red;" class="text-muted">@(Model.Price.ToString("n0")) VND</h5>
+            <h5>Size: @bg </h5>
+            <label>Số lượng: @Html.DisplayFor(model => model.AvailableQuantity)</label>
+            <br /><br />
+            <a href="@Url.Action("AddToCart",new { id = Model.ID})" class="btn btn-success">Đặt hàng</a>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="caption text-center">
+                        Thông tin sản phẩm
+                    </div>
+                </div>
+                <div class="card-body">
+                    @Model.Description
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top:20px;">
+    @Html.ActionLink("Edit", "Update", new {id = Model.ID }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Assignment.Models.Data.Bill>
+
+@{
+	ViewData["Title"] = "Bill";
+}
+
+<h1 class="text-center">Bill</h1>
+
+
+@{
+	if (ViewBag.Error != null)
+	{
+		<div class="alert alert-danger" role="alert">
+			@ViewBag.Error
+		</div>
+	}
+}
+<table class="table">
+	<thead>
+		<tr>
+			@*<th>
+				@Html.DisplayNameFor(model => model.ID)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.UserId)
+			</th>*@
+			<th>
+				@Html.DisplayNameFor(model => model.MaHD)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CreateDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Receiveddate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+
+			
+			<tr>
+				@*<td>
+			@Html.DisplayFor(modelItem => item.ID)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.UserId)
+			</td>*@
+				<td>
+					@Html.DisplayFor(modelItem => item.MaHD)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreateDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Receiveddate)
+				</td>
+				<td>
+					@if(item.Status == 0)
+					{
+						<p>Đã Thanh Toán</p>
+					}
+					@*@if(item.Status == 1)
+					{
+						<p>Huỷ hàng</p>
+					}
+					@if (item.Status == 2)
+					{
+						<p>Đã Thanh toán</p>
+					}*@
+				</td>
+				<td>
+					@*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+					@Html.ActionLink("Details", "BillDetail", new { id=item.ID })
+					@*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+				</td>
+				@*<td>
+					<a href="@Url.Action("HuyHang",new { id = item.ID})" onclick="return confirm('Bạn có chắc muốn huỷ đơn hàng này không ?');" class="btn btn-danger btn-sm">Huỷ hàng</a>
+					<a href="@Url.Action("NhanHang",new { id = item.ID})" onclick="return confirm('Nhận hàng thành công ?');" class="btn btn-success btn-sm">Nhận hàng</a>
+				</td>*@
+			</tr>
+		}
+	</tbody>
+</table>

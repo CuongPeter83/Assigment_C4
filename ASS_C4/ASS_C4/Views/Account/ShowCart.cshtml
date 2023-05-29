@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Assignment.Models.Data.CartDetails>
+
+@{
+	ViewData["Title"] = "ShowCart";
+	var id = ViewBag.id;
+}
+
+<h1>ShowCart</h1>
+
+@if (ViewBag.Error != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@ViewBag.Error
+	</div>
+}
+@if (ViewBag.Thongbao != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@ViewBag.Thongbao
+	</div>
+}
+<table class="table">
+	<thead>
+		<tr>
+			@*<th>
+			@Html.DisplayNameFor(model => model.ID)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.UserID)
+			</th>*@
+			<th>
+				@Html.DisplayNameFor(model => model.Product.NameProduct)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Image)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Quantity)
+			</th>
+			<th>
+				Thanh tien
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				@{
+					int thanhtien = 0 ;
+					thanhtien = item.Quantity * item.Product.Price;
+				}
+				@*<td>
+			@Html.DisplayFor(modelItem => item.ID)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.UserID)
+			</td>*@
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.NameProduct)
+				</td>
+				<td>
+					<img src="~/images/@item.Product.Image?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" style="height:150px ; width: 150px;">
+				<td>
+					<span class="text-muted">@(item.Product.Price.ToString("n0")) VND</span>
+				</td>
+				<td>
+						@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+				<td>
+					<span class="text-muted">@(thanhtien.ToString("n0")) VND</span>
+				</td>
+				<td>
+					<a href="@Url.Action("RemoveItem",new { id = item.ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a>
+				</td>
+				</td>
+			</tr>
+			
+		}
+		<hr />
+	<td></td>
+	<td class="text-right">Tổng số lượng:</td>
+	<td> @Model.Sum(m => m.Quantity) </td>
+	<td class="text-right">Tổng thành tiền:</td>
+	<td>@Model.Sum(m => m.Quantity * m.Product.Price).ToString("#,##0").Replace(',', '.') VNĐ </td>
+	<td>
+		<a href="@Url.Action("CreateBill" , new {id = id})" onclick="return confirm('Bạn có muốn thanh toán không?');" class="btn btn-success btn-sm">Thanh toán</a>
+	</td>
+	</tbody>
+
+</table>

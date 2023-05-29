@@ -1,0 +1,117 @@
+﻿@using Assignment.Models.Data;
+@model Assignment.Models.Data.User
+
+@{
+	ViewData["Title"] = "Register";
+
+}
+<style>
+	form {
+		border: 2px solid black;
+		width: 500px;
+		margin: auto;
+		padding: 5px;
+		margin-top: 25px;
+	}
+
+	.form-group {
+		padding: 10px;
+		margin: 10px;
+	}
+
+		.form-group label {
+			font-size: 18px;
+			font-family: 'Times New Roman';
+		}
+
+	.form-control {
+		line-height: 15px;
+		height: 40px;
+		padding: 2px;
+		margin: 2px;
+	}
+</style>
+
+<div>
+	<form asp-action="Register">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<h2 class="text-center">Đăng ký tài khoản</h2>
+		@if (ViewBag.validate != null)
+		{
+			<span class="badge badge-danger">@ViewBag.validate</span>
+		}
+		@*<div class="form-group">
+		<label asp-for="UserID" class="control-label"></label>
+		<input asp-for="UserID" class="form-control" />
+		<span asp-validation-for="UserID" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+		<label asp-for="IDRole" class="control-label"></label>
+		<input asp-for="IDRole" class="form-control" />
+		<span asp-validation-for="IDRole" class="text-danger"></span>
+		</div>*@
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Name" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Email" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Email" type="email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+				@if (ViewBag.error != null)
+				{
+					<span class="badge badge-danger">@ViewBag.error</span>
+				}
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Password" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Password" type="password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="PhoneNumber" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="PhoneNumber" class="form-control" />
+				<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-3">
+				<label asp-for="Address" class="control-label"></label>
+			</div>
+			<div class="col-9">
+				<input asp-for="Address" class="form-control" />
+				<span asp-validation-for="Address" class="text-danger"></span>
+			</div>
+		</div>
+		@*<div class="form-group">
+		<label asp-for="Status" class="control-label"></label>
+		<input asp-for="Status" class="form-control" />
+		<span asp-validation-for="Status" class="text-danger"></span>
+		</div>*@
+		<div class="form-group">
+				<input type="submit" value="Register" class="btn btn-primary" style="margin:auto;"/>
+		</div>
+	</form>
+</div>
+
+
+<div>
+	<a asp-action="Login">Login</a>
+</div>
+

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<Assignment.Models.Data.Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<style>
+
+	.thumbnail {
+		height: 380px;
+		margin-bottom: 20px;
+		border: 1px solid gray;
+		border-radius: 10px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 5px;
+	}
+
+	.item.list-group-item {
+		float: none;
+		width: 100%;
+		background-color: #fff;
+		margin: 10px;
+	}
+
+		.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+			background: #428bca;
+		}
+
+		.item.list-group-item .list-group-image {
+			margin-right: 10px;
+			padding: 0px;
+		}
+
+		.item.list-group-item .thumbnail {
+			margin-bottom: 0px;
+		}
+
+		.item.list-group-item .caption {
+			padding: 10px;
+		}
+
+		.item.list-group-item:nth-of-type(odd) {
+			background: #eeeeee;
+		}
+
+		.item.list-group-item:before, .item.list-group-item:after {
+			display: table;
+			content: " ";
+		}
+
+		.item.list-group-item img {
+			float: left;
+		}
+
+		.item.list-group-item:after {
+			clear: both;
+		}
+
+	.list-group-item-text {
+		display: flex;
+		align-items: center;
+	}
+
+		.list-group-item-text > img {
+			width: 150px;
+			height: 150px;
+			border: 1px solid white;
+			margin: auto;
+		}
+
+	.btn-1 {
+		width: 200px;
+		height: 60px;
+		border: 1px solid white;
+		margin: auto;
+		padding: 10px
+	}
+
+		.btn-1 > .btn {
+		}
+</style>
+
+
+<p>
+	<a asp-action="CreateProduct">Create New</a>
+</p>
+
+<form asp-action="Search" method="get">
+	<div>
+		<input type="text" id="name" name="name" placeholder="Tên sản phẩm" style="height : 40px; width: 90%;" />
+		<button type="submit" class="btn btn-primary">Search</button>
+
+		
+	</div>
+</form>
+@*<div class="alert alert-success">
+	@if (ViewBag.Alter != null)
+	{
+		<strong>Success!</strong> @ViewBag.Alter
+	}
+</div>*@
+
+<div class="row" style="margin-top: 15px;">
+
+	<div class="">
+		<tbody class="row">
+			<div id="products" class="list-group ">
+				<div class="row">
+					@foreach (var item in Model)
+					{
+						<div class=" item col-xs-3 col-lg-3" st>
+							<div class="thumbnail">
+								<img class="group list-group-image">
+								<p class="group inner list-group-item-text">
+									<img src="/images/@item.Image?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">
+								</p>
+								<div class="caption">
+									<h5 class="group inner list-group-item-heading" style="padding:10px; height: 60px;">
+										@Html.DisplayFor(modelItem => item.NameProduct)
+									</h5>
+									<div class="row">
+										<div class="col-xs-12 col-md-7">
+											<p class="lead" style="padding-left:5px; ">
+												<span style="color:red;" class="text-muted">@(item.Price.ToString("n0")) VND</span>
+											</p>
+										</div>
+										<div class="col-xs-12 col-md-5">
+											<a href="@Url.Action("AddToCart",new { id = item.ID})" class="btn btn-success">Đặt hàng</a>
+										</div>
+									</div>
+									<p style="padding-left:6px;">
+										@Html.ActionLink("Edit", "Update", new {id = item.ID }) |
+										@Html.ActionLink("Details", "ProductDetail", new { id = item.ID }) |
+										@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+									</p>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</tbody>
+		@*@{
+		var prev = !Model.HasPreviousPage ? "disabled" : "";
+		var next = !Model.HasNextPage ? "disabled" : "";
+		}
+		<div class="btn-1">
+		<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-primary @prev">Previous</a>
+		<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-primary @next">Next</a>
+		</div>*@
+	</div>
+</div>

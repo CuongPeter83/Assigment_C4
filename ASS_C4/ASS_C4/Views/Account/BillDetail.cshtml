@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Assignment.Models.Data.BillDetail>
+
+@{
+	ViewData["Title"] = "BillDetail";
+}
+
+<h1>BillDetail</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			@*            <th>
+			@Html.DisplayNameFor(model => model.Id)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.IdHD)
+			</th>
+			<th>
+			@Html.DisplayNameFor(model => model.IdSp)
+			</th>*@
+			<th>
+				@Html.DisplayNameFor(model => model.Product.NameProduct)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Product.Image)
+			</th>
+			
+			<th>
+				@Html.DisplayNameFor(model => model.Quantity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				Thành tiền
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			{
+				int thanhtien = 0;
+				thanhtien = item.Quantity * item.Product.Price;
+			}
+			<tr>
+				@*
+			<td>
+			@Html.DisplayFor(modelItem => item.Id)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.IdHD)
+			</td>
+			<td>
+			@Html.DisplayFor(modelItem => item.IdSp)
+			</td>*@
+				<td>
+					@Html.DisplayFor(modelItem => item.Product.NameProduct)
+				</td>
+				<td>
+					<img src="~/images/@item.Product.Image?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" style="height:150px ; width: 150px;">
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+				<td>
+					@*@Html.DisplayFor(modelItem => item.Price)*@
+					<span class="text-muted">@(item.Product.Price.ToString("n0")) VND</span>
+				</td>
+				<td>
+					<span class="text-muted">@((item.Quantity * item.Product.Price).ToString("n0")) VND</span>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

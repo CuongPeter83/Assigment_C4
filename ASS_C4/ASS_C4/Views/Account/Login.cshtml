@@ -1,0 +1,115 @@
+﻿@model Assignment.Models.Data.User
+
+<style>
+    form {
+        border: 2px solid black;
+        
+        margin : auto;
+        margin-top : 30px;
+        width : 450px;
+        padding : 15px;
+    }
+    .form-group {
+        margin : 5px;
+        padding : 5px;
+    }
+    .form-group label {
+        font-size : 20px;
+        font-family : 'Times New Roman';
+    }
+    .form-control {
+        padding : 2px;
+        height : 30px;
+        margin : 2px;
+        line-height : 10px;
+    }
+    .form-control input {
+        height : 25px;
+        font-size : 18px;
+        color : black;
+
+    }
+    .form-group .btn {
+        margin: auto ;
+        padding : 7px;
+        height : 50px;
+        width : 100px;
+        font-size : 25px;
+    }
+
+</style>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+@if (ViewBag.ErrorMail != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMail
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
+<section class="vh-100" style="background-color: lightgray;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://thegioidienanh.vn/stores/news_dataimages/thanhtan/062022/10/13/in_article/4951_grey_d.jpg?rt=20220610135116"
+                                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <form asp-action="Login" method="post">
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <span class="h1 fw-bold mb-0">Login</span>
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="Email" class="control-label "></label>
+                                        <input asp-for="Email" type="email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" type="password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+
+                                    </div>
+
+                                    <a class="small text-muted" href="#!">Forgot password?</a>
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">
+                                        Don't have an account? <a  asp-controller="Account" asp-action="Register"
+                                                                  style="color: #393f81;">Register here</a>
+                                    </p>
+                                    <a href="#!" class="small text-muted">Terms of use.</a>
+                                    <a href="#!" class="small text-muted">Privacy policy</a>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
